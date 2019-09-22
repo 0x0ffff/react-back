@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
 
-import 'font-awesome/css/font-awesome.min.css'
-import './index.scss'
+import Home from 'page/home/index.js';
+import Layout from './components/layout/index'
+import Login from './page/login/index';
+import Error from './page/error/index';
+import UserList from './page/user/index';
+
+class App extends Component {
+  render() {
+    let LayoutRouter = (
+      <Layout>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path="/user/index" component={UserList} />
+          <Redirect exact from="/user" to="/user/index" />
+          <Route component={Error} />
+        </Switch>
+      </Layout>
+    );
+    return (
+      <Router>
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/" render={ props => LayoutRouter} />
+          </Switch>
+      </Router>
+    );
+  }
+}
 
 ReactDOM.render(
-  <h1>HI</h1>,
+  <App />,
   document.getElementById('root')
 )
-

@@ -10,6 +10,11 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'js/app.js'
   },
+  resolve: {
+    alias: {
+      page: path.resolve(__dirname, 'src/page')
+    }
+  },
   module: {
     rules: [
       {
@@ -64,7 +69,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      favicon: './favicon.ico'
     }),
     new ExtractTextPlugin('css/[name].css'),
     new webpack.optimize.CommonsChunkPlugin({
@@ -73,6 +79,19 @@ module.exports = {
     })
   ],
   devServer: {
-    port: 3000
+    port: 3000,
+    historyApiFallback: {
+      index: '/dist/'
+    },
+    proxy: {
+      '/manage': {
+        target: 'http://admintest.happymmall.com',
+        changeOrigin: true
+      },
+      '/user/logout.do': {
+        target: 'http://admintest.happymmall.com',
+        changeOrigin: true
+      }
+    }
   },
 }
