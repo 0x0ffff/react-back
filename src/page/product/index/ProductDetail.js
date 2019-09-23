@@ -50,7 +50,7 @@ class ProductDetail extends Component {
   render() {
     return (
       <div id="page-wrapper">
-        <PageTitle title="添加商品" />
+        <PageTitle title="商品详情" />
         <div className="form-horizontal">
           <div className="form-group">
             <label className="col-md-2 control-label">商品名称</label>

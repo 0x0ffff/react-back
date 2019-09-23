@@ -51,7 +51,7 @@ class ProductSave extends Component {
     this.loadProduct();
   }
 
-  onValueChage(e) {
+  onValueChange(e) {
     let name = e.target.name,
     value = e.target.value.trim();
 
