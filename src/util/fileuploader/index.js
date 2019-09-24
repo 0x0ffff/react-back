@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FileUpload from 'react-fileupload';
+import FileUpload from './file';
 
 class FileUploader extends Component {
   render() {
